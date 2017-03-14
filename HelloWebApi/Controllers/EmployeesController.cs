@@ -36,9 +36,9 @@ namespace HelloWebApi.Controllers
         }
 
         // GET api/employees/12345
-        public IEnumerable<Employee> Get(int id)
+        public Employee Get(int id)
         {
-            return list.Where(e => e.Id == id);
+            return list.First(e => e.Id == id);
         }
 
         // POST
@@ -89,26 +89,11 @@ namespace HelloWebApi.Controllers
             return Request.CreateResponse(HttpStatusCode.NoContent);
         }
 
-        //// POST api/employees
-        //public void Post(Employee employee)
-        //{
-        //    int maxId = list.Max(e => e.Id);
-        //    employee.Id = maxId + 1;
-        //    list.Add(employee);
-        //}
-
-        //// PUT api/employees/12345
-        //public void Put(int id, Employee employee)
-        //{
-        //    int index = list.ToList().FindIndex(e => e.Id == id);
-        //    list[index] = employee;
-        //}
-
-        //// DELETE api/employees/12345
-        //public void Delete(int id)
-        //{
-        //    Employee employee = Get(id);
-        //    list.Remove(employee);
-        //}
+        // DELETE api/employees/12345
+        public void Delete(int id)
+        {
+            Employee employee = Get(id);
+            list.Remove(employee);
+        }
     }
 }
