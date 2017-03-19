@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Tracing;
 
 namespace HelloWebApi
 {
@@ -10,6 +11,10 @@ namespace HelloWebApi
         public static void Register(HttpConfiguration config)
         {
             // Конфигурация и службы веб-API
+            config.EnableSystemDiagnosticsTracing();
+            
+            // custom xml Tracer
+            config.Services.Replace(typeof(ITraceWriter), new WebApiTracer());
 
             // Маршруты веб-API
             config.MapHttpAttributeRoutes();
