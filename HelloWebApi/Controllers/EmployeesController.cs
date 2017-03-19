@@ -6,11 +6,19 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.OData;
+using System.Web.Http.Tracing;
 
 namespace HelloWebApi.Controllers
 {
     public class EmployeesController : ApiController
     {
+        private readonly ITraceWriter traceWriter = null;
+
+        public EmployeesController()
+        {
+            this.traceWriter = GlobalConfiguration.Configuration.Services.GetTraceWriter();
+        }
+
         private static IList<Employee> list = new List<Employee>()
         {
             new Employee()
@@ -38,7 +46,46 @@ namespace HelloWebApi.Controllers
         // GET api/employees/12345
         public Employee Get(int id)
         {
-            return list.First(e => e.Id == id);
+            Employee employee = null;
+
+            if (traceWriter != null)
+            {
+                traceWriter.TraceBeginEnd(
+                    Request,
+                    TraceCategories.FormattingCategory,
+                    TraceLevel.Info,
+                    "EmployeesController",
+                    "Get",
+                    beginTrace: (tr) =>
+                    {
+                        tr.Message = "Entering Get";
+                    },
+                    execute: () =>
+                    {
+                        System.Threading.Thread.Sleep(1000); //Simulate delay
+                        employee = list.First(e => e.Id == id);
+                    },
+                    endTrace: (tr) =>
+                    {
+                        tr.Message = "Leaving Get";
+                    },
+                    errorTrace: null);
+
+                /*
+                traceWriter.Info(Request, "EmployeesController", String.Format($"Getting employee {id}"));
+                traceWriter.Trace(Request,
+                    "System.Web.Http.Conrollers", System.Web.Http.Tracing.TraceLevel.Info,
+                    (traceRecord) =>
+                    {
+                        traceRecord.Message = String.Format($"Getting employee {id}");
+                        traceRecord.Operation = "Get(int)";
+                        traceRecord.Operator = "EmployeeController";
+                    });
+                    */
+            }
+
+
+            return employee;
         }
 
         // POST

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelloWebApi.Tech;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -10,12 +11,6 @@ namespace HelloWebApi
     {
         public static void Register(HttpConfiguration config)
         {
-            // Конфигурация и службы веб-API
-            config.EnableSystemDiagnosticsTracing();
-            
-            // custom xml Tracer
-            config.Services.Replace(typeof(ITraceWriter), new WebApiTracer());
-
             // Маршруты веб-API
             config.MapHttpAttributeRoutes();
 
@@ -24,6 +19,14 @@ namespace HelloWebApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // Конфигурация и службы веб-API
+            //config.EnableSystemDiagnosticsTracing();
+
+            // custom xml Tracer
+            //config.Services.Replace(typeof(ITraceWriter), new WebApiTracer());
+
+            config.Services.Replace(typeof(ITraceWriter), new EntryExitTracer());
         }
     }
 }
