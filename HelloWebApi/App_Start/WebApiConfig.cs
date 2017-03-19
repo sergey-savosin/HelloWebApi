@@ -24,9 +24,9 @@ namespace HelloWebApi
             //config.EnableSystemDiagnosticsTracing();
 
             // custom xml Tracer
-            //config.Services.Replace(typeof(ITraceWriter), new WebApiTracer());
-
-            config.Services.Replace(typeof(ITraceWriter), new EntryExitTracer());
+            config.Services.Replace(typeof(ITraceWriter), new WebApiTracer());
+            config.MessageHandlers.Add(new TracingHandler());
+            //config.Services.Replace(typeof(ITraceWriter), new EntryExitTracer());
         }
     }
 }
