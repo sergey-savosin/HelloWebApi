@@ -1,35 +1,33 @@
-﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
-    </div>
-</div>
-<form action="http://localhost:54782/api/employees" method="post">
+﻿@section scripts{
+    <script type="text/javascript">
+        $.support.cors = true; // Needed for IE
+        $(document).ready(function () {
+            $('#btnPost').click(function () {
+                $.post("http://localhost:54782/api/employees",
+                    $('#employeeForm').serialize())
+                    .done(function (data) { alert("New employee created. ID is " + data); })
+                    .fail(function () { alert("Error creating employee"); });
+            });
+
+            $('#btnPostPartial').click(function () {
+                $.post("http://localhost:54782/api/employees",
+                    { "": $('#lastname').val() })
+                    .done(function (data) { alert("Success"); })
+                    .fail(function () { alert("Error creating employee"); });
+            });
+        });
+    </script>
+}
+<form id="employeeForm" action="http://localhost:54782/api/employees" method="post">
     <div>
         <label for="firstname">First Name:</label>
-        <input type="text" name="firstname" />
+        <input type="text" id="firstname" name="firstname" />
     </div>
     <div>
         <label for="lastname">Last Name:</label>
-        <input type="text" name="lastname" />
+        <input type="text" id="lastname" name="lastname" />
     </div>
     <input type="submit" value="Submit" />
+    <input id="btnPost" type="button" value="jQuery POST" />
+    <input id="btnPostPartial" type="button" value="jQuery POST Partial" />
 </form>
