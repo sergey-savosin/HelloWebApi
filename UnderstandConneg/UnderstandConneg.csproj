@@ -187,6 +187,8 @@
     </Compile>
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tech\CultureHandler.cs" />
+    <Compile Include="Tech\DateTimeConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

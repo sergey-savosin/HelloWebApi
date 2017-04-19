@@ -35,9 +35,9 @@ namespace HelloWebApi.Controllers
 
             return employee;
         }
-        public int Post(Employee employee)
+        public void Post(Employee employee)
         {
-            return new Random().Next();
+            // do nothing
         }
     }
 }
