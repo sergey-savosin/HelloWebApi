@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Web.Http;
+using UnderstandConneg.Model;
 
 namespace HelloWebApi.Controllers
 {
@@ -35,6 +38,18 @@ namespace HelloWebApi.Controllers
 
             return employee;
         }
+
+        public HttpResponseMessage Get(Shift shift)
+        {
+            // Do smth
+            var response = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent("")
+            };
+
+            return response;
+        }
+
         public void Post(Employee employee)
         {
             // do nothing
