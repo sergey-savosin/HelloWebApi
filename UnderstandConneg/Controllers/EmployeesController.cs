@@ -7,7 +7,9 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
 using UnderstandConneg.Model;
+using UnderstandConneg.Tech;
 
 namespace HelloWebApi.Controllers
 {
@@ -39,9 +41,32 @@ namespace HelloWebApi.Controllers
             return employee;
         }
 
-        public HttpResponseMessage Get(Shift shift)
+        //public HttpResponseMessage Get(Shift shift)
+        //{
+        //    // Do smth
+        //    var response = new HttpResponseMessage(HttpStatusCode.OK)
+        //    {
+        //        Content = new StringContent("")
+        //    };
+
+        //    return response;
+        //}
+
+        //public HttpResponseMessage Get(
+        //    [ModelBinder]IEnumerable<string> ifmatch)
+        //{
+        //    var response = new HttpResponseMessage(HttpStatusCode.OK)
+        //    {
+        //        Content = new StringContent(ifmatch.First().ToString())
+        //    };
+
+        //    return response;
+        //}
+
+        public HttpResponseMessage Get(
+            [ModelBinder(typeof(TalentScoutModelBinderProvider))]
+                TalentScout scout)
         {
-            // Do smth
             var response = new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new StringContent("")

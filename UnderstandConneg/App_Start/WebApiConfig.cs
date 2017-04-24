@@ -25,8 +25,15 @@ namespace UnderstandConneg
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            config.Services.Add(typeof(
+                System.Web.Http.ValueProviders.ValueProviderFactory),
+                new HeaderValueProviderFactory());
+
             config.Formatters.JsonFormatter.SerializerSettings
                 .Converters.Add(new DateTimeConverter());
+
+            config.EnableSystemDiagnosticsTracing();
+
             config.MessageHandlers.Add(new CultureHandler());
         }
     }

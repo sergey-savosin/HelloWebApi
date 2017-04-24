@@ -187,10 +187,15 @@
     </Compile>
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\Shift.cs" />
+    <Compile Include="Model\TalentScout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tech\CultureHandler.cs" />
     <Compile Include="Tech\DateTimeConverter.cs" />
+    <Compile Include="Tech\HeaderValueProvider.cs" />
+    <Compile Include="Tech\HeaderValueProviderFactory.cs" />
     <Compile Include="Tech\ShiftTypeConverter.cs" />
+    <Compile Include="Tech\TalentScoutModelBinder.cs" />
+    <Compile Include="Tech\TalentScoutModelBinderProvider.cs" />
     <Compile Include="Tech\TimeHelper.cs" />
   </ItemGroup>
   <ItemGroup>

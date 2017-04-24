@@ -27,7 +27,8 @@ namespace UnderstandConneg.Tech
             {
                 var parts = ((string)value).Split('T');
 
-                if (DateTime.TryParse((string)parts[0], out DateTime date))
+                DateTime date;
+                if (DateTime.TryParse((string)parts[0], out date))
                 {
                     return new Shift()
                     {
