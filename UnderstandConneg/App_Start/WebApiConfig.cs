@@ -32,6 +32,8 @@ namespace UnderstandConneg
             config.Formatters.JsonFormatter.SerializerSettings
                 .Converters.Add(new DateTimeConverter());
 
+            config.Formatters.Add(new FixedWidthTextMediaFormatter());
+
             config.EnableSystemDiagnosticsTracing();
 
             config.MessageHandlers.Add(new CultureHandler());

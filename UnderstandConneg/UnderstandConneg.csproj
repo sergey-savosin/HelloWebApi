@@ -192,6 +192,7 @@
     <Compile Include="Tech\AllRequestParameterBinding.cs" />
     <Compile Include="Tech\CultureHandler.cs" />
     <Compile Include="Tech\DateTimeConverter.cs" />
+    <Compile Include="Tech\FixedWidthTextMediaFormatter.cs" />
     <Compile Include="Tech\HeaderValueProvider.cs" />
     <Compile Include="Tech\HeaderValueProviderFactory.cs" />
     <Compile Include="Tech\ShiftTypeConverter.cs" />
