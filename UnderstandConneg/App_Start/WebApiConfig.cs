@@ -35,6 +35,16 @@ namespace UnderstandConneg
             config.EnableSystemDiagnosticsTracing();
 
             config.MessageHandlers.Add(new CultureHandler());
+
+            var rules = config.ParameterBindingRules;
+            rules.Insert(0, p =>
+            {
+                if (p.ParameterType == typeof(Employee))
+                {
+                    return new AllRequestParameterBinding(p);
+                }
+                return null;
+            });
         }
     }
 }

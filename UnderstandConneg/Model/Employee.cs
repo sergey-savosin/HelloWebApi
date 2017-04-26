@@ -13,5 +13,6 @@ namespace HelloWebApi.Models
         public int Department { get; set; }
 
         public DateTime Doj { get; set; }
+        public string Xaffiliation { get; set; }
     }
 }

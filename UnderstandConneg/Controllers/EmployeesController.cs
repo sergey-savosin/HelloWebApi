@@ -79,5 +79,10 @@ namespace HelloWebApi.Controllers
         {
             // do nothing
         }
+
+        public void Put(int id, Employee employee)
+        {
+            // Does nothing!
+        }
     }
 }
