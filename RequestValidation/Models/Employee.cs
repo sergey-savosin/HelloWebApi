@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-using System.Web;
+using Resources;
 
 namespace RequestValidation.Models
 {
@@ -15,7 +12,8 @@ namespace RequestValidation.Models
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(20, ErrorMessageResourceName = "InvalidLastNameLength",
+            ErrorMessageResourceType = typeof(Messages))]
         public string LastName { get; set; }
 
         [Required]
