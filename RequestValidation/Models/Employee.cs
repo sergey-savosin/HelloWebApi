@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Resources;
+using System.Collections.Generic;
+using RequestValidation.Utils;
 
 namespace RequestValidation.Models
 {
@@ -17,7 +19,7 @@ namespace RequestValidation.Models
         public string LastName { get; set; }
 
         [Required]
-        [DataMember(IsRequired = true)]
-        public int Department { get; set; }
+        [MemberRange(0,9)]
+        public List<int> Department { get; set; }
     }
 }
