@@ -21,5 +21,10 @@ namespace RequestValidation.Models
         [Required]
         [MemberRange(0,9)]
         public List<int> Department { get; set; }
+
+        public decimal AnnualIncome { get; set; }
+
+        [LimitChecker("AnnualIncome", 75)]
+        public decimal Contribution401K { get; set; }
     }
 }
